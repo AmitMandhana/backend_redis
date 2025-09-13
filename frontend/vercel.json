@@ -1,0 +1,53 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "https://backup-crm-1.onrender.com/api/:path*"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        },
+        {
+          "key": "Access-Control-Allow-Methods",
+          "value": "GET, POST, PUT, PATCH, DELETE, OPTIONS"
+        },
+        {
+          "key": "Access-Control-Allow-Headers",
+          "value": "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+        },
+        {
+          "key": "Access-Control-Allow-Credentials",
+          "value": "true"
+        },
+        {
+          "key": "Cross-Origin-Opener-Policy",
+          "value": "same-origin-allow-popups"
+        },
+        {
+          "key": "Cross-Origin-Embedder-Policy",
+          "value": "unsafe-none"
+        }
+      ]
+    }
+  ],
+  "env": {
+    "NEXT_PUBLIC_BACKEND_URL": "https://backup-crm-1.onrender.com",
+    "BACKEND_URL": "https://backup-crm-1.onrender.com",
+    "NEXT_PUBLIC_FRONTEND_URL": "https://frontend-xeno-bnaa.vercel.app"
+  },
+  "build": {
+    "env": {
+      "NEXT_PUBLIC_BACKEND_URL": "https://backup-crm-1.onrender.com",
+      "BACKEND_URL": "https://backup-crm-1.onrender.com",
+      "NEXT_PUBLIC_FRONTEND_URL": "https://frontend-xeno-bnaa.vercel.app"
+    }
+  }
+}
+
+
