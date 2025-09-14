@@ -16,9 +16,9 @@ export default function Home() {
           <div className="max-w-2xl w-full px-8 py-16 bg-white/90 rounded-3xl shadow-2xl border border-purple-100 flex flex-col items-center">
             <div className="mb-8 text-center">
               <div className="flex justify-center mb-4">
-                <img src="/MiniCRM.png" alt="CRM Logo" className="w-20 h-20 rounded-full shadow-lg border-4 border-purple-200 bg-white" />
+                <img src="/logo.png" alt="Amit CRM Logo" className="w-20 h-20 rounded-full shadow-lg border-4 border-purple-200 bg-white" />
               </div>
-              <h1 className="text-5xl font-extrabold bg-gradient-to-r from-purple-600 via-pink-500 to-yellow-400 bg-clip-text text-transparent mb-2 drop-shadow-lg tracking-tight">Xeno CRM</h1>
+              <h1 className="text-5xl font-extrabold bg-gradient-to-r from-purple-600 via-pink-500 to-yellow-400 bg-clip-text text-transparent mb-2 drop-shadow-lg tracking-tight">Amit CRM</h1>
               <p className="text-lg text-gray-700 mb-2">Reimagine your customer relationships.</p>
               <p className="text-xl font-semibold text-purple-700 mb-4">AI-powered campaigns, segmentation, and analytics.</p>
               <div className="flex flex-wrap justify-center gap-2 mb-4">
@@ -34,7 +34,7 @@ export default function Home() {
             </div>
           </div>
           <div className="mt-12 w-full flex flex-col items-center">
-            <img src="/MiniCRM.png" alt="CRM Illustration" className="w-96 rounded-xl shadow-lg border border-purple-100" />
+            <img src="/logo.png" alt="Amit CRM Illustration" className="w-96 rounded-xl shadow-lg border border-purple-100" />
             <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-4xl">
               <div className="bg-white/80 rounded-xl p-6 shadow flex flex-col items-center">
                 <span className="text-4xl mb-2">🤖</span>
