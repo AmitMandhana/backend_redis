@@ -1,4 +1,5 @@
 import Customer from "../../models/Customer";
+import redis from "../../utils/redis";
 
 
 export async function getAllCustomersService(userId: string) {
@@ -38,7 +39,13 @@ export async function createOrUpdateCustomerService(
   const existing = await Customer.findOne(query);
   if (existing) {
     Object.assign(existing, update);
-    return existing.save();
+    const saved = await existing.save();
+    // Publish event to Redis
+    await redis.publish("customer:updated", JSON.stringify(saved));
+    return saved;
   }
-  return Customer.create(update);
+  const created = await Customer.create(update);
+  // Publish event to Redis
+  await redis.publish("customer:created", JSON.stringify(created));
+  return created;
 }

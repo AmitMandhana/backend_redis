@@ -1,6 +1,7 @@
 import Campaign from "../../models/Campaign";
 import DeliveryLog from "../../models/DeliveryLog";
 import { kafka, topics } from "../../utils/kafka";
+import redis from "../../utils/redis";
 
 
 export async function createCampaignService( 
@@ -21,6 +22,9 @@ export async function createCampaignService(
         message,
         intent,
     });
+    // Publish event to Redis for campaign creation
+    await redis.publish('campaign:created', JSON.stringify(newCampaign));
+    console.log('Published campaign:created event to Redis Pub/Sub for new campaign creation.');
     return newCampaign;
   } catch (error) {
     console.error("Error creating campaign:", error);
@@ -41,6 +45,9 @@ export async function queueCampaignService(userId: string, campaignId: string){
     await producer.connect();
     await producer.send({ topic: topics.campaignsDispatch, messages: [{ key: campaign.id, value: JSON.stringify({ campaignId: campaign.id }) }] });
     await producer.disconnect();
+  // Publish event to Redis for campaign queued
+  await redis.publish('campaign:queued', JSON.stringify(campaign));
+  console.log('Published campaign:queued event to Redis Pub/Sub for campaign queueing.');
     return campaign;
 }
 

@@ -1,4 +1,5 @@
 import SegmentRule from "../../models/SegmentRule";
+import redis from "../../utils/redis";
 
 export async function createSegmentRuleService(userId: string,
     logicType: string,
@@ -13,6 +14,9 @@ export async function createSegmentRuleService(userId: string,
         });
 
         const savedSegmentRule = await newSegmentRule.save();
+        // Publish event to Redis for segment rule creation
+        await redis.publish('segmentRule:created', JSON.stringify(savedSegmentRule));
+        console.log('Published segmentRule:created event to Redis Pub/Sub for new segment rule creation.');
         return savedSegmentRule;
      
     } catch (error) {

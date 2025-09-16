@@ -9,26 +9,20 @@ import { startDeliveryWorker } from "./workers/delivery";
 import { startStatusWorker } from "./workers/status";
 import { createTopics } from "./utils/kafka";
 
+import { subscribeToCustomerEvents } from "./utils/redisSubscriber";
+
 const PORT = process.env.PORT || 3000;
 
 connectDB();
 
-// Keep-alive ping configuration
-const interval = 30000; // 30 seconds
-const EXTERNAL_URL = 'https://backup-crm-1.onrender.com';
+// Start Redis subscriber for demonstration
+subscribeToCustomerEvents();
 
-function reloadWebsite() {
-  axios
-    .get(`${EXTERNAL_URL}/health`)
-    .then((response) => {
-      console.log("Keep-alive ping successful");
-    })
-    .catch((error) => {
-      console.error(`Keep-alive ping failed: ${error.message}`);
-    });
-}
 
-setInterval(reloadWebsite, interval);
+
+
+
+
 
 
 // Create Kafka topics and start workers
